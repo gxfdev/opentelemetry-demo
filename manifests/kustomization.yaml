@@ -28,11 +28,7 @@ patches:
           - name: harbor-cred
 
 images:
-  # ======= 业务镜像 =======
-  - name: ghcr.io/open-telemetry/demo
-    newName: 192.168.151.208:30002/library/otel-demo
-    newTag: "1"
-  # ======= 基础镜像 =======
+  # ======= 只处理基础镜像 =======
   - name: busybox
     newName: 192.168.151.208:30002/library/busybox
     newTag: "latest"
