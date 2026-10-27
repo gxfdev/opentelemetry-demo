@@ -1,1 +1,85 @@
+# otel-values.yaml
+# 强制所有镜像从内网 Harbor 拉取，并统一 Tag
 
+default:
+  image:
+    pullPolicy: Always
+
+# ======== 业务微服务组件 ========
+components:
+  accounting: { image: { repository: 192.168.151.208:30002/library/otel-demo-accounting, tag: "1", pullPolicy: Always } }
+  ad: { image: { repository: 192.168.151.208:30002/library/otel-demo-ad, tag: "1", pullPolicy: Always } }
+  agent: { image: { repository: 192.168.151.208:30002/library/otel-demo-agent, tag: "1", pullPolicy: Always } }
+  cart: { image: { repository: 192.168.151.208:30002/library/otel-demo-cart, tag: "1", pullPolicy: Always } }
+  chatbot: { image: { repository: 192.168.151.208:30002/library/otel-demo-chatbot, tag: "1", pullPolicy: Always } }
+  checkout: { image: { repository: 192.168.151.208:30002/library/otel-demo-checkout, tag: "1", pullPolicy: Always } }
+  currency: { image: { repository: 192.168.151.208:30002/library/otel-demo-currency, tag: "1", pullPolicy: Always } }
+  email: { image: { repository: 192.168.151.208:30002/library/otel-demo-email, tag: "1", pullPolicy: Always } }
+  flagd-ui: { image: { repository: 192.168.151.208:30002/library/otel-demo-flagd-ui, tag: "1", pullPolicy: Always } }
+  fraud-detection: { image: { repository: 192.168.151.208:30002/library/otel-demo-fraud-detection, tag: "1", pullPolicy: Always } }
+  frontend: { image: { repository: 192.168.151.208:30002/library/otel-demo-frontend, tag: "1", pullPolicy: Always } }
+  frontend-proxy: { image: { repository: 192.168.151.208:30002/library/otel-demo-frontend-proxy, tag: "1", pullPolicy: Always } }
+  image-provider: { image: { repository: 192.168.151.208:30002/library/otel-demo-image-provider, tag: "1", pullPolicy: Always } }
+  kafka: { image: { repository: 192.168.151.208:30002/library/otel-demo-kafka, tag: "1", pullPolicy: Always } }
+  load-generator: { image: { repository: 192.168.151.208:30002/library/otel-demo-load-generator, tag: "1", pullPolicy: Always } }
+  mcp: { image: { repository: 192.168.151.208:30002/library/otel-demo-mcp, tag: "1", pullPolicy: Always } }
+  opamp-server: { image: { repository: 192.168.151.208:30002/library/otel-demo-opamp-server, tag: "1", pullPolicy: Always } }
+  payment: { image: { repository: 192.168.151.208:30002/library/otel-demo-payment, tag: "1", pullPolicy: Always } }
+  product-catalog: { image: { repository: 192.168.151.208:30002/library/otel-demo-product-catalog, tag: "1", pullPolicy: Always } }
+  quote: { image: { repository: 192.168.151.208:30002/library/otel-demo-quote, tag: "1", pullPolicy: Always } }
+  recommendation: { image: { repository: 192.168.151.208:30002/library/otel-demo-recommendation, tag: "1", pullPolicy: Always } }
+  shipping: { image: { repository: 192.168.151.208:30002/library/otel-demo-shipping, tag: "1", pullPolicy: Always } }
+  telemetry-docs: { image: { repository: 192.168.151.208:30002/library/otel-demo-telemetry-docs, tag: "1", pullPolicy: Always } }
+
+# ======== 基础设施 / 依赖组件 ========
+# Init 容器等待依赖用的 busybox
+waitForDependencies:
+  image:
+    repository: 192.168.151.208:30002/library/busybox
+    tag: latest
+    pullPolicy: Always
+
+opentelemetry-collector:
+  image:
+    repository: 192.168.151.208:30002/library/otel-opentelemetry-collector-contrib
+    tag: 0.160.0
+
+prometheus:
+  server:
+    image:
+      repository: 192.168.151.208:30002/library/prometheus
+      tag: v3.14.0
+
+grafana:
+  image:
+    repository: 192.168.151.208:30002/library/grafana
+    tag: 13.2.2-distroless
+  sidecar:
+    image:
+      repository: 192.168.151.208:30002/library/k8s-sidecar
+      tag: 2.11.2
+
+jaeger:
+  image:
+    repository: 192.168.151.208:30002/library/jaeger
+    tag: 2.20.0
+
+opensearch:
+  image:
+    repository: 192.168.151.208:30002/library/opensearch
+    tag: 3.8.0
+
+valkey:
+  image:
+    repository: 192.168.151.208:30002/library/valkey
+    tag: 9.0.4-alpine3.23
+
+postgresql:
+  image:
+    repository: 192.168.151.208:30002/library/postgres
+    tag: 18.4
+
+flagd:
+  image:
+    repository: 192.168.151.208:30002/library/flagd
+    tag: v0.16.0
