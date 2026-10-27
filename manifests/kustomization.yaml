@@ -5,35 +5,28 @@ resources:
 namespace: otel-demo-cicd
 
 patches:
+  # 1. 注入 Harbor 私有仓库拉取凭证
   - target:
       kind: Deployment
     patch: |-
-      # 1. 强制注入拉取凭证
       - op: add
         path: /spec/template/spec/imagePullSecrets
         value:
           - name: harbor-cred
-      # 2. 强制所有容器都用 Always 拉取，解决 latest 缓存不更新的问题
+      # 2. 强制所有容器的拉取策略为 Always，防止本地缓存导致更新不生效
       - op: replace
         path: /spec/template/spec/containers/0/imagePullPolicy
         value: Always
-  - target:
-      kind: Deployment
-      name: accounting
-    patch: |-
-      # 修复 InitContainer 的拉取策略
-      - op: replace
-        path: /spec/template/spec/initContainers/0/imagePullPolicy
-        value: Always
 
-# 3. 统一在这里声明所有业务镜像的版本
-# 如果以后要升级，只需要把这里的 "1" 改成 "2"，提交 Git 即可
+# 3. 统一管理所有镜像的 Tag（解决 not found 问题）
 images:
+  - name: 192.168.151.208:30002/library/otel-demo-cart
+    newTag: "1"  # 如果你 Harbor 里是 2 或 3，请在这里改成对应的数字
   - name: 192.168.151.208:30002/library/otel-demo-accounting
     newTag: "1"
   - name: 192.168.151.208:30002/library/otel-demo-ad
     newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-cart
+  - name: 192.168.151.208:30002/library/otel-demo-checkout
     newTag: "1"
   - name: 192.168.151.208:30002/library/otel-demo-currency
     newTag: "1"
@@ -42,16 +35,6 @@ images:
   - name: 192.168.151.208:30002/library/otel-demo-frontend
     newTag: "1"
   - name: 192.168.151.208:30002/library/otel-demo-frontend-proxy
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-image-provider
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-kafka
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-load-generator
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-mcp
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-opamp-server
     newTag: "1"
   - name: 192.168.151.208:30002/library/otel-demo-payment
     newTag: "1"
@@ -63,12 +46,22 @@ images:
     newTag: "1"
   - name: 192.168.151.208:30002/library/otel-demo-shipping
     newTag: "1"
+  - name: 192.168.151.208:30002/library/otel-demo-kafka
+    newTag: "1"
+  - name: 192.168.151.208:30002/library/otel-demo-load-generator
+    newTag: "1"
   - name: 192.168.151.208:30002/library/otel-demo-telemetry-docs
+    newTag: "1"
+  - name: 192.168.151.208:30002/library/otel-demo-image-provider
+    newTag: "1"
+  - name: 192.168.151.208:30002/library/otel-demo-mcp
+    newTag: "1"
+  - name: 192.168.151.208:30002/library/otel-demo-opamp-server
     newTag: "1"
   - name: 192.168.151.208:30002/library/otel-demo-flagd-ui
     newTag: "1"
-
-  # 💡 如果你的集群连不上外网，把外网镜像也重定向到 Harbor
-  # - name: busybox
-  #   newName: 192.168.151.208:30002/library/busybox
-  #   newTag: "latest"
+  
+  # 4. 解决 busybox 被 DockerHub 限流的问题，指向你的 Harbor
+  - name: busybox
+    newName: 192.168.151.208:30002/library/busybox
+    newTag: "latest"
