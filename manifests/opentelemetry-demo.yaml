@@ -19486,7 +19486,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: accounting
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-accounting'
+          image: '192.168.151.208:30002/library/otel-demo-accounting:1'
           imagePullPolicy: Always
           env:
             - name: OTEL_SERVICE_NAME
@@ -19562,7 +19562,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: ad
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-ad'
+          image: '192.168.151.208:30002/library/otel-demo-ad:1'
           imagePullPolicy: Always
           ports:
             
@@ -19641,7 +19641,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: agent
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-agent'
+          image: '192.168.151.208:30002/library/otel-demo-agent:1'
           imagePullPolicy: Always
           ports:
             
@@ -19833,7 +19833,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: cart
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-cart'
+          image: '192.168.151.208:30002/library/otel-demo-cart:1'
           imagePullPolicy: Always
           ports:
             
@@ -19920,7 +19920,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: chatbot
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-chatbot'
+          image: '192.168.151.208:30002/library/otel-demo-chatbot:1'
           imagePullPolicy: Always
           ports:
             
@@ -20001,7 +20001,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: checkout
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-checkout'
+          image: '192.168.151.208:30002/library/otel-demo-checkout:1'
           imagePullPolicy: Always
           ports:
             
@@ -20107,7 +20107,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: currency
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-currency'
+          image: '192.168.151.208:30002/library/otel-demo-currency:1'
           imagePullPolicy: Always
           ports:
             
@@ -20178,7 +20178,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: email
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-email'
+          image: '192.168.151.208:30002/library/otel-demo-email:1'
           imagePullPolicy: Always
           ports:
             
@@ -20295,7 +20295,7 @@ spec:
             - name: config-rw
               mountPath: /etc/flagd
         - name: flagd-ui
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-flagd-ui'
+          image: '192.168.151.208:30002/library/otel-demo-flagd-ui:1'
           imagePullPolicy: Always
           ports:
             
@@ -20385,7 +20385,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: fraud-detection
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-fraud-detection'
+          image: '192.168.151.208:30002/library/otel-demo-fraud-detection:1'
           imagePullPolicy: Always
           env:
             - name: OTEL_SERVICE_NAME
@@ -20467,7 +20467,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: frontend
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-frontend'
+          image: '192.168.151.208:30002/library/otel-demo-frontend:1'
           imagePullPolicy: Always
           ports:
             
@@ -20573,7 +20573,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: frontend-proxy
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-frontend-proxy'
+          image: '192.168.151.208:30002/library/otel-demo-frontend-proxy:1'
           imagePullPolicy: Always
           ports:
             
@@ -20702,7 +20702,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: image-provider
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-image-provider'
+          image: '192.168.151.208:30002/library/otel-demo-image-provider:1'
           imagePullPolicy: Always
           ports:
             
@@ -20771,7 +20771,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: kafka
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-kafka'
+          image: '192.168.151.208:30002/library/otel-demo-kafka:1'
           imagePullPolicy: Always
           ports:
             
@@ -20854,7 +20854,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: load-generator
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-load-generator'
+          image: '192.168.151.208:30002/library/otel-demo-load-generator:1'
           imagePullPolicy: Always
           ports:
             
@@ -20951,7 +20951,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: mcp
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-mcp'
+          image: '192.168.151.208:30002/library/otel-demo-mcp:1'
           imagePullPolicy: Always
           ports:
             
@@ -21026,7 +21026,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: opamp-server
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-opamp-server'
+          image: '192.168.151.208:30002/library/otel-demo-opamp-server:1'
           imagePullPolicy: Always
           command:
             - /opamp-server
@@ -21082,7 +21082,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: payment
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-payment'
+          image: '192.168.151.208:30002/library/otel-demo-payment:1'
           imagePullPolicy: Always
           ports:
             
@@ -21161,7 +21161,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: product-catalog
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-product-catalog'
+          image: '192.168.151.208:30002/library/otel-demo-product-catalog:1'
           imagePullPolicy: Always
           ports:
             
@@ -21266,7 +21266,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: quote
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-quote'
+          image: '192.168.151.208:30002/library/otel-demo-quote:1'
           imagePullPolicy: Always
           ports:
             
@@ -21343,7 +21343,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: recommendation
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-recommendation'
+          image: '192.168.151.208:30002/library/otel-demo-recommendation:1'
           imagePullPolicy: Always
           ports:
             
@@ -21422,7 +21422,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: shipping
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-shipping'
+          image: '192.168.151.208:30002/library/otel-demo-shipping:1'
           imagePullPolicy: Always
           ports:
             
@@ -21512,7 +21512,7 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: telemetry-docs
-          image: 'ghcr.io/open-telemetry/demo:3.1.0-telemetry-docs'
+          image: '192.168.151.208:30002/library/otel-demo-telemetry-docs:1'
           imagePullPolicy: Always
           ports:
             
