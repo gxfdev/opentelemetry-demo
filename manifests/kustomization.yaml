@@ -26,3 +26,40 @@ patches:
         path: /spec/template/spec/imagePullSecrets
         value:
           - name: harbor-cred
+
+images:
+  # ======= 业务镜像 =======
+  - name: ghcr.io/open-telemetry/demo
+    newName: 192.168.151.208:30002/library/otel-demo
+    newTag: "1"
+  # ======= 基础镜像 =======
+  - name: busybox
+    newName: 192.168.151.208:30002/library/busybox
+    newTag: "latest"
+  - name: otel/opentelemetry-collector-contrib
+    newName: 192.168.151.208:30002/library/otel-opentelemetry-collector-contrib
+    newTag: "0.160.0"
+  - name: docker.io/grafana/grafana
+    newName: 192.168.151.208:30002/library/grafana
+    newTag: "13.2.2-distroless"
+  - name: jaegertracing/jaeger
+    newName: 192.168.151.208:30002/library/jaeger
+    newTag: "2.20.0"
+  - name: quay.io/prometheus/prometheus
+    newName: 192.168.151.208:30002/library/prometheus
+    newTag: "v3.14.0"
+  - name: quay.io/kiwigrid/k8s-sidecar
+    newName: 192.168.151.208:30002/library/k8s-sidecar
+    newTag: "2.11.2"
+  - name: opensearchproject/opensearch
+    newName: 192.168.151.208:30002/library/opensearch
+    newTag: "3.8.0"
+  - name: ghcr.io/open-feature/flagd
+    newName: 192.168.151.208:30002/library/flagd
+    newTag: "v0.16.0"
+  - name: ghcr.io/valkey-io/valkey
+    newName: 192.168.151.208:30002/library/valkey
+    newTag: "9.0.4-alpine3.23"
+  - name: postgres
+    newName: 192.168.151.208:30002/library/postgres
+    newTag: "18.4"
