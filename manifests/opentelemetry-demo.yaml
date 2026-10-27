@@ -29,7 +29,7 @@ metadata:
     app.kubernetes.io/instance: opentelemetry-demo
     app.kubernetes.io/version: "13.2.2"
   name: grafana
-  namespace: otel-demo
+  namespace: otel-demo-cicd
 ---
 # Source: opentelemetry-demo/charts/jaeger/templates/jaeger/jaeger-service-account.yaml
 apiVersion: v1
@@ -50,7 +50,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: otel-collector
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-collector-0.173.1
     app.kubernetes.io/name: opentelemetry-collector
@@ -72,7 +72,7 @@ metadata:
     helm.sh/chart: prometheus-29.30.2
     app.kubernetes.io/part-of: prometheus
   name: prometheus
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   annotations:
     {}
 ---
@@ -94,7 +94,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: grafana
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: grafana-13.2.5
     app.kubernetes.io/name: grafana
@@ -118,7 +118,7 @@ metadata:
     app.kubernetes.io/instance: opentelemetry-demo
     app.kubernetes.io/version: "13.2.2"
   name: grafana-config-dashboards
-  namespace: otel-demo
+  namespace: otel-demo-cicd
 data:
   provider.yaml: |-
     apiVersion: 1
@@ -140,7 +140,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: grafana-13.2.5
     app.kubernetes.io/name: grafana
@@ -180,7 +180,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: ui-config
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: jaeger-4.13.1
     app.kubernetes.io/name: jaeger
@@ -196,7 +196,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: user-config
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: jaeger-4.13.1
     app.kubernetes.io/name: jaeger
@@ -338,7 +338,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: otel-collector-agent
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-collector-0.173.1
     app.kubernetes.io/name: opentelemetry-collector
@@ -382,7 +382,7 @@ data:
       k8s_leader_elector/k8s_cluster:
         auth_type: serviceAccount
         lease_name: k8s.cluster.receiver.opentelemetry.io
-        lease_namespace: otel-demo
+        lease_namespace: otel-demo-cicd
       k8s_observer:
         auth_type: serviceAccount
         node: ${env:K8S_NODE_NAME}
@@ -715,7 +715,7 @@ metadata:
     helm.sh/chart: prometheus-29.30.2
     app.kubernetes.io/part-of: prometheus
   name: prometheus
-  namespace: otel-demo
+  namespace: otel-demo-cicd
 data:
   allow-snippet-annotations: "false"
   alerting_rules.yml: |
@@ -1061,7 +1061,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: agent-fixtures
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -1874,7 +1874,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: flagd-config
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -2092,7 +2092,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-alerting
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -2110,7 +2110,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboard-nginx-metrics
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -2468,7 +2468,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboard-apm-dashboard
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -4752,7 +4752,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboard-demo-dashboard
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -5956,7 +5956,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboard-exemplars-dashboard
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -6432,7 +6432,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboard-linux-dashboard
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -9289,7 +9289,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboard-opentelemetry-collector
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -15073,7 +15073,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboard-postgresql-dashboard
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -16564,7 +16564,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-dashboard-spanmetrics-dashboard
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -17615,7 +17615,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-datasources
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -17701,7 +17701,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgresql-init
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-demo-0.42.6
     
@@ -17932,7 +17932,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: grafana
-    namespace: otel-demo
+    namespace: otel-demo-cicd
 roleRef:
   kind: ClusterRole
   name: grafana-clusterrole
@@ -17958,7 +17958,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: otel-collector
-  namespace: otel-demo
+  namespace: otel-demo-cicd
 ---
 # Source: opentelemetry-demo/charts/prometheus/templates/clusterrolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -17975,7 +17975,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: prometheus
-    namespace: otel-demo
+    namespace: otel-demo-cicd
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -17986,7 +17986,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: grafana
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: grafana-13.2.5
     app.kubernetes.io/name: grafana
@@ -18143,7 +18143,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: otel-collector
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-collector-0.173.1
     app.kubernetes.io/name: opentelemetry-collector
@@ -18204,7 +18204,7 @@ metadata:
     helm.sh/chart: prometheus-29.30.2
     app.kubernetes.io/part-of: prometheus
   name: prometheus
-  namespace: otel-demo
+  namespace: otel-demo-cicd
 spec:
   ports:
     - name: http
@@ -18813,7 +18813,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: otel-collector-agent
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: opentelemetry-collector-0.173.1
     app.kubernetes.io/name: opentelemetry-collector
@@ -18834,7 +18834,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 2b6d2a108bc91fb2863e2f6941f7549ced45244232a8f9dbdb5738737e9ae2be
+        checksum/config: 31f20935d418f4475787a9e83f4668965f9975ca0a46998ad294ed1d81f24e03
         
       labels:
         app.kubernetes.io/name: opentelemetry-collector
@@ -18855,7 +18855,7 @@ spec:
           securityContext:
             {}
           image: "otel/opentelemetry-collector-contrib:0.160.0"
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             
             - name: jaeger-compact
@@ -18961,7 +18961,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grafana
-  namespace: otel-demo
+  namespace: otel-demo-cicd
   labels:
     helm.sh/chart: grafana-13.2.5
     app.kubernetes.io/name: grafana
@@ -19002,7 +19002,7 @@ spec:
       containers:
         - name: grafana-sc-alerts
           image: "quay.io/kiwigrid/k8s-sidecar:2.11.2"
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: METHOD
               value: WATCH
@@ -19042,7 +19042,7 @@ spec:
               mountPath: "/etc/grafana/provisioning/alerting"
         - name: grafana-sc-dashboard
           image: "quay.io/kiwigrid/k8s-sidecar:2.11.2"
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: METHOD
               value: WATCH
@@ -19082,7 +19082,7 @@ spec:
               mountPath: "/tmp/dashboards"
         - name: grafana-sc-datasources
           image: "quay.io/kiwigrid/k8s-sidecar:2.11.2"
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: METHOD
               value: WATCH
@@ -19122,7 +19122,7 @@ spec:
               mountPath: "/etc/grafana/provisioning/datasources"
         - name: grafana
           image: "docker.io/grafana/grafana:13.2.2-distroless"
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
@@ -19281,7 +19281,7 @@ spec:
           securityContext:
             {}
           image: jaegertracing/jaeger:2.20.0
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: jaeger
           args:
             - "--config"
@@ -19366,7 +19366,7 @@ metadata:
     helm.sh/chart: prometheus-29.30.2
     app.kubernetes.io/part-of: prometheus
   name: prometheus
-  namespace: otel-demo
+  namespace: otel-demo-cicd
 spec:
   strategy:
     type: Recreate
@@ -19486,8 +19486,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: accounting
-          image: '192.168.151.208:30002/library/otel-demo-accounting:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-accounting'
+          imagePullPolicy: Always
           env:
             - name: OTEL_SERVICE_NAME
               valueFrom:
@@ -19562,8 +19562,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: ad
-          image: '192.168.151.208:30002/library/otel-demo-ad:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-ad'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 9465
@@ -19641,8 +19641,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: agent
-          image: '192.168.151.208:30002/library/otel-demo-agent:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-agent'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8010
@@ -19771,8 +19771,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: astronomy-db
-          image: '192.168.151.208:30002/library/postgres:18.4'
-          imagePullPolicy: IfNotPresent
+          image: 'postgres:18.4'
+          imagePullPolicy: Always
           command:
             - docker-entrypoint.sh
             - postgres
@@ -19833,8 +19833,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: cart
-          image: '192.168.151.208:30002/library/otel-demo-cart:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-cart'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -19920,8 +19920,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: chatbot
-          image: '192.168.151.208:30002/library/otel-demo-chatbot:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-chatbot'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 7860
@@ -20001,8 +20001,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: checkout
-          image: '192.168.151.208:30002/library/otel-demo-checkout:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-checkout'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -20107,8 +20107,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: currency
-          image: '192.168.151.208:30002/library/otel-demo-currency:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-currency'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -20178,8 +20178,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: email
-          image: '192.168.151.208:30002/library/otel-demo-email:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-email'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -20252,7 +20252,7 @@ spec:
       containers:
         - name: flagd
           image: 'ghcr.io/open-feature/flagd:v0.16.0'
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           command:
             - /flagd-build
             - start
@@ -20295,8 +20295,8 @@ spec:
             - name: config-rw
               mountPath: /etc/flagd
         - name: flagd-ui
-          image: '192.168.151.208:30002/library/otel-demo-flagd-ui:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-flagd-ui'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 4000
@@ -20385,8 +20385,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: fraud-detection
-          image: '192.168.151.208:30002/library/otel-demo-fraud-detection:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-fraud-detection'
+          imagePullPolicy: Always
           env:
             - name: OTEL_SERVICE_NAME
               valueFrom:
@@ -20467,8 +20467,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: frontend
-          image: '192.168.151.208:30002/library/otel-demo-frontend:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-frontend'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -20573,8 +20573,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: frontend-proxy
-          image: '192.168.151.208:30002/library/otel-demo-frontend-proxy:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-frontend-proxy'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -20702,8 +20702,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: image-provider
-          image: '192.168.151.208:30002/library/otel-demo-image-provider:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-image-provider'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8081
@@ -20771,8 +20771,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: kafka
-          image: '192.168.151.208:30002/library/otel-demo-kafka:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-kafka'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 9092
@@ -20854,8 +20854,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: load-generator
-          image: '192.168.151.208:30002/library/otel-demo-load-generator:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-load-generator'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8089
@@ -20951,8 +20951,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: mcp
-          image: '192.168.151.208:30002/library/otel-demo-mcp:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-mcp'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8011
@@ -21026,8 +21026,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: opamp-server
-          image: '192.168.151.208:30002/library/otel-demo-opamp-server:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-opamp-server'
+          imagePullPolicy: Always
           command:
             - /opamp-server
             - -no-tls
@@ -21082,8 +21082,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: payment
-          image: '192.168.151.208:30002/library/otel-demo-payment:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-payment'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -21161,8 +21161,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: product-catalog
-          image: '192.168.151.208:30002/library/otel-demo-product-catalog:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-product-catalog'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -21266,8 +21266,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: quote
-          image: '192.168.151.208:30002/library/otel-demo-quote:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-quote'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -21343,8 +21343,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: recommendation
-          image: '192.168.151.208:30002/library/otel-demo-recommendation:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-recommendation'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -21422,8 +21422,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: shipping
-          image: '192.168.151.208:30002/library/otel-demo-shipping:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-shipping'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8080
@@ -21512,8 +21512,8 @@ spec:
       serviceAccountName: opentelemetry-demo
       containers:
         - name: telemetry-docs
-          image: '192.168.151.208:30002/library/otel-demo-telemetry-docs:latest'
-          imagePullPolicy: IfNotPresent
+          image: 'ghcr.io/open-telemetry/demo:3.1.0-telemetry-docs'
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 8000
@@ -21591,7 +21591,7 @@ spec:
       containers:
         - name: valkey-cart
           image: 'ghcr.io/valkey-io/valkey:9.0.4-alpine3.23'
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             
             - containerPort: 6379
