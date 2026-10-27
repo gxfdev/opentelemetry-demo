@@ -1,67 +1,34 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - opentelemetry-demo.yaml
-namespace: otel-demo-cicd
-
-patches:
-  # 1. 注入 Harbor 私有仓库拉取凭证
-  - target:
-      kind: Deployment
-    patch: |-
-      - op: add
-        path: /spec/template/spec/imagePullSecrets
-        value:
-          - name: harbor-cred
-      # 2. 强制所有容器的拉取策略为 Always，防止本地缓存导致更新不生效
-      - op: replace
-        path: /spec/template/spec/containers/0/imagePullPolicy
-        value: Always
-
-# 3. 统一管理所有镜像的 Tag（解决 not found 问题）
 images:
-  - name: 192.168.151.208:30002/library/otel-demo-cart
-    newTag: "1"  # 如果你 Harbor 里是 2 或 3，请在这里改成对应的数字
-  - name: 192.168.151.208:30002/library/otel-demo-accounting
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-ad
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-checkout
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-currency
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-email
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-frontend
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-frontend-proxy
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-payment
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-product-catalog
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-quote
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-recommendation
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-shipping
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-kafka
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-load-generator
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-telemetry-docs
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-image-provider
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-mcp
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-opamp-server
-    newTag: "1"
-  - name: 192.168.151.208:30002/library/otel-demo-flagd-ui
-    newTag: "1"
-  
-  # 4. 解决 busybox 被 DockerHub 限流的问题，指向你的 Harbor
+  # ... 已有的业务镜像映射 ...
+
+  # 基础镜像重定向到 Harbor
   - name: busybox
     newName: 192.168.151.208:30002/library/busybox
     newTag: "latest"
+  - name: otel/opentelemetry-collector-contrib
+    newName: 192.168.151.208:30002/library/otel-opentelemetry-collector-contrib
+    newTag: "0.160.0"
+  - name: docker.io/grafana/grafana
+    newName: 192.168.151.208:30002/library/grafana
+    newTag: "13.2.2-distroless"
+  - name: jaegertracing/jaeger
+    newName: 192.168.151.208:30002/library/jaeger
+    newTag: "2.20.0"
+  - name: quay.io/prometheus/prometheus
+    newName: 192.168.151.208:30002/library/prometheus
+    newTag: "v3.14.0"
+  - name: quay.io/kiwigrid/k8s-sidecar
+    newName: 192.168.151.208:30002/library/k8s-sidecar
+    newTag: "2.11.2"
+  - name: opensearchproject/opensearch
+    newName: 192.168.151.208:30002/library/opensearch
+    newTag: "3.8.0"
+  - name: ghcr.io/open-feature/flagd
+    newName: 192.168.151.208:30002/library/flagd
+    newTag: "v0.16.0"
+  - name: ghcr.io/valkey-io/valkey
+    newName: 192.168.151.208:30002/library/valkey
+    newTag: "9.0.4-alpine3.23"
+  - name: postgres
+    newName: 192.168.151.208:30002/library/postgres
+    newTag: "18.4"
