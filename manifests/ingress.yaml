@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: otel-demo-ingress
+  namespace: otel-demo-cicd
+spec:
+  ingressClassName: contour # 指定用我们刚装的 Contour
+  rules:
+    - host: otel-demo.local # 随便写个假域名
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-proxy
+                port:
+                  number: 8080
