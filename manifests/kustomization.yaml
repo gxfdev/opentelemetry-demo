@@ -59,3 +59,6 @@ images:
   - name: postgres
     newName: 192.168.151.208:30002/library/postgres
     newTag: "18.4"
+resources:
+  - opentelemetry-demo.yaml
+  - ingress.yaml
